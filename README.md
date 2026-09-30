@@ -163,8 +163,11 @@ Glama Release 是由 Glama 建置、檢驗及發布的容器版本，與 GitHub 
 
 ```json
 {
-  "build_steps": ["uv pip install --system -r requirements.txt"],
-  "cmd_arguments": ["python", "-m", "server.fastmcp_service"],
+  "build_steps": [
+    "uv venv /app/.venv --python 3.13",
+    "uv pip install --python /app/.venv/bin/python -r requirements.txt"
+  ],
+  "cmd_arguments": ["/app/.venv/bin/python", "-m", "server.fastmcp_service"],
   "environment": {
     "PXDCA_TRANSPORT": "stdio"
   }
