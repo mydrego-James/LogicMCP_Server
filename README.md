@@ -1,5 +1,7 @@
 # PxDCA
 
+**Language: Traditional Chinese (default) | [English](README_EN.md)**
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 > **Before implementation, align the logic.**
