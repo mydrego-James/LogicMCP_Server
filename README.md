@@ -155,6 +155,24 @@ PXDCA_CONFIG_FILE=./config/pxdca.toml
 
 完整設定與 `docker run` 範例請見 [docker.md](docker.md)。
 
+### 2.3 Glama 目錄與發布
+
+PxDCA 已由維護者接管其 [Glama MCP Server 頁面](https://glama.ai/mcp/servers/mydrego-James/PxDCA)。根目錄的 [`glama.json`](glama.json) 提供 Glama 維護者中繼資料；它不包含 API key、Token 或部署憑證。
+
+Glama Release 是由 Glama 建置、檢驗及發布的容器版本，與 GitHub Release 不同。Glama 的 build spec 應使用 Python 3.13、安裝 `requirements.txt`，並以 stdio 啟動 PxDCA：
+
+```json
+{
+  "build_steps": ["uv pip install --system -r requirements.txt"],
+  "cmd_arguments": ["python", "-m", "server.fastmcp_service"],
+  "environment": {
+    "PXDCA_TRANSPORT": "stdio"
+  }
+}
+```
+
+Repository 內的 `Dockerfile` 仍是供自架 Streamable HTTP 服務使用；Glama 會以 `mcp-proxy` 包裝上述 stdio command，對外提供其託管連線。兩種部署共享同一個 Server 與四個公開 Tools，但 transport 邊界不同。
+
 ### 憑證與 API 邊界
 
 Repository、Docker image 與範例設定不包含維護者的測試 API、Token 或憑證。

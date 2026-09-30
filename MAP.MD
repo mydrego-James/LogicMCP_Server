@@ -31,6 +31,7 @@ PxDCA/
 ├─ docker.md
 ├─ Dockerfile
 ├─ fastmcp.json
+├─ glama.json                 # Glama maintainer metadata
 ├─ install.bat
 ├─ install.sh
 ├─ MIGRATION.md
